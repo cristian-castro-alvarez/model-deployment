@@ -26,7 +26,8 @@ def create_layout(app: Dash) -> html.Div:
             html.Div(className='inputs',
                      children=[
                          input_variables.render(app=app)
-                     ])
+                     ]),
+            html.H2(children="Probability of Failure is: %")
         ],
         style={'textAlign': 'center'}
     )

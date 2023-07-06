@@ -186,7 +186,6 @@ def render(app: Dash) -> html.Div:
                               type='number',
                               required=True,
                               placeholder='Hoek & Brown mi',
-                              style={'display': 'inline-block', 'margin-right': 10})
-                ]
-            )
+                              style={'display': 'inline-block', 'margin-right': 10})],
+                style={'margin-bottom': 30})
         ])
