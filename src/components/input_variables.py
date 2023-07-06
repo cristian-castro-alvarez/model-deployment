@@ -12,6 +12,7 @@ def render(app: Dash) -> html.Div:
                               placeholder='(min, max) = (60, 700)',
                               min=60,
                               max=700,
+                              value=100,
                               required=True,
                               style={'display': 'inline-block', 'margin-right': 10}),
                     html.H6('Slope IRA (°):', style={'display':'inline-block', 'margin-right': 5}),
