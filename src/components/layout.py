@@ -23,11 +23,18 @@ def create_layout(app: Dash) -> html.Div:
                 html.H6(children=")", style={'display':'inline-block'})]),
             html.Img(src='assets/images/Pic.png',
                      style={'height':'40%', 'width':'40%', 'margin': '20px'}),
+            html.Div(children=[
+                html.H6(children="Please fill each box with the required parameter and then press 'Calculate PoF'",
+                        style={'marginBottom': 50, 'marginTop': 25})]),
             html.Div(className='inputs',
                      children=[
                          input_variables.render(app=app)
                      ]),
-            html.H2(children="Probability of Failure is: %")
+            html.H2(children="Probability of Failure is:"),
+            html.H2(id='pof', children='Test%'),
+            html.H6(children="This model was trained to recognize the following failure mechanisms:", style={'marginBottom': 20, 'marginTop': 50}),
+            html.Img(src='assets/images/model_mechanisms.png',
+                    style={'height': '40%', 'width': '65%', 'margin': '10px'}),
         ],
         style={'textAlign': 'center'}
     )
