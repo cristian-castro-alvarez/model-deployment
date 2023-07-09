@@ -26,7 +26,10 @@ def create_layout(app: Dash) -> html.Div:
                      style={'height':'40%', 'width':'40%', 'margin': '20px'}),
             html.Div(children=[
                 html.H6(children="Please fill each box with the required parameter and then press 'Calculate PoF'",
-                        style={'marginBottom': 50, 'marginTop': 25})]),
+                        style={'marginTop': 25})]),
+            html.Div(children=[
+                html.H6(children="Each variable has a given [min_value, max_value] range.",
+                        style={'marginBottom': 50})]),
             html.Div(className='inputs',
                      children=[
                          input_variables.render(app=app)

@@ -1,6 +1,7 @@
 from dash import Dash, html
 from dash_bootstrap_components.themes import BOOTSTRAP
 from dash.dependencies import Input, Output, State
+from dash.exceptions import PreventUpdate
 import numpy as np
 from pickle import load
 
@@ -13,7 +14,8 @@ def main() -> None:
     app.layout = create_layout(app=app)
 
     @app.callback(
-        Output('pof', 'children'),
+        [Output('pof', 'children'),
+         Output('slope_height', 'value')],
         [Input('calculate-button', 'n_clicks')],
         [
             State('slope_height', 'value'),
@@ -40,7 +42,9 @@ def main() -> None:
                       interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri,
                       rock_density, young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi):
         if n_clicks:
-            # New Variables
+            if slope_height not in range(60,701):
+                slope_height = 60
+
             slope_ira_cos = np.cos(np.radians(slope_ira))
             slope_ira_sin = np.sin(np.radians(slope_ira))
             int_1_dip_cos = np.cos(np.radians(interface_1_dip))
@@ -56,6 +60,7 @@ def main() -> None:
             int_2_fri_cos = np.cos(np.radians(interface_2_fri))
             int_2_fri_sin = np.sin(np.radians(interface_2_fri))
             ratio = distance/slope_height
+
             # Order Variables
             predictors = np.array([slope_height, interface_1_coh, interface_2_coh, rock_density, young_modulus,
                                    poisson_ratio, UCS, phreatic_level, GSI, mi, slope_ira_cos, slope_ira_sin, int_1_dip_cos,
@@ -63,7 +68,9 @@ def main() -> None:
                                    int_2_dip_sin, int_2_dd_cos, int_2_dd_sin, int_2_fri_cos, int_2_fri_sin, distance,
                                    ratio])
             # Scale
-            return f"{ratio}%"
+            return f"{ratio}%", slope_height
+        else:
+            raise PreventUpdate
 
     app.run(debug=True)
 
