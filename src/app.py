@@ -13,6 +13,7 @@ from src.components.layout import create_layout
 
 def main() -> None:
     app = Dash(__name__, external_stylesheets=[BOOTSTRAP])
+    server = app.server
     app.title = "PoF Prediction"
     app.layout = create_layout(app=app)
 
