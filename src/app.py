@@ -14,11 +14,6 @@ server = app.server
 app.title = "PoF Prediction"
 app.layout = create_layout(app=app)
 
-model_dir = Path.cwd() / 'assets' / 'model' / 'binary_model.h5'
-model = tf.keras.models.load_model(model_dir)
-
-scaler_dir = Path.cwd() / 'assets' / 'scaler' / 'scaler.pkl'
-scaler = load(open(scaler_dir, 'rb'))
 
 @app.callback(
     [Output('pof', 'children'),
@@ -65,6 +60,9 @@ def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip
                     interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri,
                     rock_density, young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi):
     if n_clicks:
+        model = tf.keras.models.load_model('binary_model.h5')
+        scaler = load(open('scaler.pkl', 'rb'))
+
         if slope_height == None:
             slope_height = 60
         if slope_ira == None:
@@ -167,9 +165,7 @@ def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip
         return f"{round(probi,1)}%", slope_height, slope_ira, interface_1_dip, interface_1_dd, interface_1_coh, \
             interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri, rock_density, \
             young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi
-    else:
-        return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, \
-            no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update
+
 
 if __name__ == "__main__":
     app.run_server(debug=True)
