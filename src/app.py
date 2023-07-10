@@ -2,14 +2,12 @@ from pathlib import Path
 from pickle import load
 
 import numpy as np
-from dash import Dash
+import tensorflow as tf
+from dash import Dash, no_update
 from dash.dependencies import Input, Output, State
-from dash.exceptions import PreventUpdate
 from dash_bootstrap_components.themes import BOOTSTRAP
-from tensorflow.keras.models import load_model
 
 from src.components.layout import create_layout
-
 
 app = Dash(__name__, external_stylesheets=[BOOTSTRAP])
 server = app.server
@@ -17,7 +15,7 @@ app.title = "PoF Prediction"
 app.layout = create_layout(app=app)
 
 model_dir = Path.cwd() / 'assets' / 'model' / 'binary_model.h5'
-model = load_model(model_dir)
+model = tf.keras.models.load_model(model_dir)
 
 scaler_dir = Path.cwd() / 'assets' / 'scaler' / 'scaler.pkl'
 scaler = load(open(scaler_dir, 'rb'))
@@ -63,9 +61,9 @@ scaler = load(open(scaler_dir, 'rb'))
         State('mi', 'value')
     ]
 )
-def example_print(n_clicks, slope_height, slope_ira, distance, interface_1_dip, interface_1_dd, interface_1_coh,
-                  interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri,
-                  rock_density, young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi):
+def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip, interface_1_dd, interface_1_coh,
+                    interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri,
+                    rock_density, young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi):
     if n_clicks:
         if slope_height == None:
             slope_height = 60
@@ -170,7 +168,8 @@ def example_print(n_clicks, slope_height, slope_ira, distance, interface_1_dip, 
             interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri, rock_density, \
             young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi
     else:
-        raise PreventUpdate
+        return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, \
+            no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update
 
 if __name__ == "__main__":
     app.run_server(debug=True)
