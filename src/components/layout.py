@@ -35,11 +35,15 @@ def create_layout(app: Dash) -> html.Div:
                          input_variables.render(app=app)
                      ]),
             html.H2(children="Probability of Failure is:"),
-            html.H2(id='pof', children='Test%'),
+            html.H2(id='pof', children='%'),
             html.H6(children="This model was trained to recognize the following failure mechanisms:",
                     style={'marginBottom': 20, 'marginTop': 50}),
             html.Img(src='assets/images/model_mechanisms.png',
                     style={'height': '40%', 'width': '65%', 'margin': '10px'}),
+            html.H5(children="DISCLAIMER", style={'color': 'red', 'marginTop': 30}),
+            html.H6(children="This is a Surrogate Model trained on top of numerical modeling results using deep "
+                                   "learning techniques. This model does not replace the decision of a competent "
+                                   "rock mechanics engineer.", style={'marginBottom': 20, 'marginTop': 20})
         ],
         style={'textAlign': 'center'}
     )
