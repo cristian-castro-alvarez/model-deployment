@@ -67,8 +67,43 @@ def example_print(n_clicks, slope_height, slope_ira, distance, interface_1_dip, 
                   interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri,
                   rock_density, young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi):
     if n_clicks:
+        if slope_height == None:
+            slope_height = 60
+        if slope_ira == None:
+            slope_ira = 37
+        if interface_1_dip == None:
+            interface_1_dip = 0
+        if interface_1_dd == None:
+            interface_1_dd = 0
+        if interface_1_coh == None:
+            interface_1_coh = 60
+        if interface_1_fri == None:
+            interface_1_fri = 45
+        if interface_2_dip == None:
+            interface_2_dip = 0
+        if interface_2_dd == None:
+            interface_2_dd = 0
+        if interface_2_coh == None:
+            interface_2_coh = 60
+        if interface_2_fri == None:
+            interface_2_fri = 45
+        if rock_density == None:
+            rock_density = 2700
+        if young_modulus == None:
+            young_modulus = 40
+        if poisson_ratio == None:
+            poisson_ratio = 0.25
+        if UCS == None:
+            UCS = 70
+        if phreatic_level == None:
+            phreatic_level = 50
+        if GSI == None:
+            GSI = 50
+        if mi == None:
+            mi = 15
+
         # Check ranges
-        if not 60 <= slope_height <= 700:
+        if not 60 <= slope_height <= 700 or slope_height == None:
             slope_height = 60
         if not 37 <= slope_ira <= 89:
             slope_ira = 37
