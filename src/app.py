@@ -137,4 +137,5 @@ def example_print(n_clicks, slope_height, slope_ira, distance, interface_1_dip, 
     else:
         raise PreventUpdate
 
-app.run()
+if __name__ == "__main__":
+    app.run_server(debug=True)
