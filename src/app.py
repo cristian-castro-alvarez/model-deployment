@@ -35,8 +35,6 @@ server = app.server
 app.title = app_title
 app.layout = create_layout(app=app)
 
-model = tf.keras.models.load_model('binary_model.h5')
-scaler = load(open('scaler.pkl', 'rb'))
 
 @app.callback(
     [Output('pof', 'children'),
@@ -189,5 +187,8 @@ def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip
         return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, \
             no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update
 
+
 if __name__ == "__main__":
+    model = tf.keras.models.load_model('binary_model.h5')
+    scaler = load(open('scaler.pkl', 'rb'))
     app.run_server(debug=True)
