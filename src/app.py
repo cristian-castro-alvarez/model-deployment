@@ -12,7 +12,7 @@ from src.components.layout import create_layout
 app_description = """Surrogate Model for Prediction of Probability of Failure in Open Pits with Two Geological Structures.
 by: Cristian Castro Álvarez (Geomechanics Engineer at Itasca Chile SpA)"""
 app_title = "PoF Prediction"
-app_image = 'https://i.ibb.co/pL26M96/Captura.jpg'
+app_image = "https://i.ibb.co/pL26M96/Captura.jpg"
 metas = [
     {"name": "viewport", "content": "width=device-width, initial-scale=1"},
     {"property": "twitter:card", "content": "summary_large_image"},
