@@ -14,7 +14,7 @@ Surrogate Model for Prediction of Probability of Failure in Open Pits with Two G
 by: Cristian Castro Álvarez (Geomechanics Engineer at Itasca Chile SpA)
 """
 app_title = "PoF Prediction"
-app_image = 'assets/images/app_image.PNG'
+app_image = 'https://github.com/cristian-castro-alvarez/model-deployment/blob/main/src/assets/images/app_image.PNG'
 metas = [
     {"name": "viewport", "content": "width=device-width, initial-scale=1"},
     {"property": "twitter:card", "content": "summary_large_image"},
