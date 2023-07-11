@@ -9,9 +9,30 @@ from dash_bootstrap_components.themes import BOOTSTRAP
 
 from src.components.layout import create_layout
 
-app = Dash(__name__, external_stylesheets=[BOOTSTRAP])
+app_description = """
+Surrogate Model for Prediction of Probability of Failure in Open Pits with Two Geological Structures.
+by: Cristian Castro Álvarez (Geomechanics Engineer at Itasca Chile SpA)
+"""
+app_title = "PoF Prediction"
+app_image = str(Path.cwd() / 'assets' / 'images' / 'app_image.png')
+metas = [
+    {"name": "viewport", "content": "width=device-width, initial-scale=1"},
+    {"property": "twitter:card", "content": "summary_large_image"},
+    {"property": "twitter:url", "content": "https://pof-prediction.onrender.com/"},
+    {"property": "twitter:title", "content": app_title},
+    {"property": "twitter:description", "content": app_description},
+    {"property": "twitter:image", "content": app_image},
+    {"property": "og:title", "content": app_title},
+    {"property": "og:type", "content": "website"},
+    {"property": "og:description", "content": app_description},
+    {"property": "og:image", "content": app_image},
+]
+
+app = Dash(__name__,
+           external_stylesheets=[BOOTSTRAP],
+           meta_tags=metas)
 server = app.server
-app.title = "PoF Prediction"
+app.title = app_title
 app.layout = create_layout(app=app)
 
 
@@ -63,39 +84,39 @@ def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip
         model = tf.keras.models.load_model('binary_model.h5')
         scaler = load(open('scaler.pkl', 'rb'))
 
-        if slope_height == None:
+        if slope_height is None:
             slope_height = 60
-        if slope_ira == None:
+        if slope_ira is None:
             slope_ira = 37
-        if interface_1_dip == None:
+        if interface_1_dip is None:
             interface_1_dip = 0
-        if interface_1_dd == None:
+        if interface_1_dd is None:
             interface_1_dd = 0
-        if interface_1_coh == None:
+        if interface_1_coh is None:
             interface_1_coh = 60
-        if interface_1_fri == None:
+        if interface_1_fri is None:
             interface_1_fri = 45
-        if interface_2_dip == None:
+        if interface_2_dip is None:
             interface_2_dip = 0
-        if interface_2_dd == None:
+        if interface_2_dd is None:
             interface_2_dd = 0
-        if interface_2_coh == None:
+        if interface_2_coh is None:
             interface_2_coh = 60
-        if interface_2_fri == None:
+        if interface_2_fri is None:
             interface_2_fri = 45
-        if rock_density == None:
+        if rock_density is None:
             rock_density = 2700
-        if young_modulus == None:
+        if young_modulus is None:
             young_modulus = 40
-        if poisson_ratio == None:
+        if poisson_ratio is None:
             poisson_ratio = 0.25
-        if UCS == None:
+        if UCS is None:
             UCS = 70
-        if phreatic_level == None:
+        if phreatic_level is None:
             phreatic_level = 50
-        if GSI == None:
+        if GSI is None:
             GSI = 50
-        if mi == None:
+        if mi is None:
             mi = 15
 
         # Check ranges
@@ -165,7 +186,9 @@ def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip
         return f"{round(probi,1)}%", slope_height, slope_ira, interface_1_dip, interface_1_dd, interface_1_coh, \
             interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri, rock_density, \
             young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi
-
+    else:
+        return no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, \
+            no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update, no_update
 
 if __name__ == "__main__":
     app.run_server(debug=True)
