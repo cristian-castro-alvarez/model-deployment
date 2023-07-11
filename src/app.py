@@ -35,6 +35,8 @@ server = app.server
 app.title = app_title
 app.layout = create_layout(app=app)
 
+model = tf.keras.models.load_model('binary_model.h5')
+scaler = load(open('scaler.pkl', 'rb'))
 
 @app.callback(
     [Output('pof', 'children'),
@@ -81,9 +83,6 @@ def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip
                     interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri,
                     rock_density, young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi):
     if n_clicks:
-        model = tf.keras.models.load_model('binary_model.h5')
-        scaler = load(open('scaler.pkl', 'rb'))
-
         if slope_height is None:
             slope_height = 60
         if slope_ira is None:
@@ -151,7 +150,7 @@ def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip
             UCS = 70
         if not 20 <= phreatic_level <= 70:
             phreatic_level = 50
-        if not 35 <= GSI <= 70:
+        if not 35 <= GSI <= 90:
             GSI = 50
         if not 2 <= mi <= 35:
             mi = 15
