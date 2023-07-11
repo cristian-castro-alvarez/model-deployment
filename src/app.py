@@ -81,6 +81,9 @@ def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip
                     interface_1_fri, interface_2_dip, interface_2_dd, interface_2_coh, interface_2_fri,
                     rock_density, young_modulus, poisson_ratio, UCS, phreatic_level, GSI, mi):
     if n_clicks:
+        model = tf.keras.models.load_model('binary_model.h5')
+        scaler = load(open('scaler.pkl', 'rb'))
+
         if slope_height is None:
             slope_height = 60
         if slope_ira is None:
@@ -189,6 +192,4 @@ def get_probability(n_clicks, slope_height, slope_ira, distance, interface_1_dip
 
 
 if __name__ == "__main__":
-    model = tf.keras.models.load_model('binary_model.h5')
-    scaler = load(open('scaler.pkl', 'rb'))
     app.run_server(debug=True)
