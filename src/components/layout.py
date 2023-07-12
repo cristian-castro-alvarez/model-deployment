@@ -11,7 +11,7 @@ def create_layout(app: Dash) -> html.Div:
                     style={'textAlign': 'center',
                            'color': 'black',
                            'font-weight': 'bold'}),
-            html.H3(children="Open Pit Slope with Two Geological Structures",
+            html.H3(children="Slope with Two Geological Structures",
                     style={'textAlign': 'center',
                            'color': 'black',
                            'font-weight': 'bold'}),

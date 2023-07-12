@@ -9,12 +9,12 @@ from dash_bootstrap_components.themes import BOOTSTRAP
 
 from src.components.layout import create_layout
 
-app_description = """Surrogate Model for Prediction of Probability of Failure in Open Pits with Two Geological Structures.
+app_description = """Surrogate Model for Prediction of Probability of Failure in Slopes with Two Geological Structures.
 by: Cristian Castro Álvarez (Geomechanics Engineer at Itasca Chile SpA)"""
 app_title = "Prediction of Probability of Failure"
-app_image = "https://i.ibb.co/pL26M96/Captura.jpg"
+app_image = "https://i.ibb.co/qjP9GR6/Captura.jpg"
 metas = [
-    {"name": "viewport", "content": "width=device-width, initial-scale=1"},
+    {"name": "viewport", "content": "width=device-width, initial-scale=1.2, maximum-scale=1.5, minimum-scale=0.5"},
     {"property": "twitter:card", "content": "summary_large_image"},
     {"property": "twitter:url", "content": "https://pof-prediction.onrender.com/"},
     {"property": "twitter:title", "content": app_title},
