@@ -9,9 +9,9 @@ from dash_bootstrap_components.themes import BOOTSTRAP
 
 from src.components.layout import create_layout
 
-app_description = """Surrogate Model for Prediction of Probability of Failure in Slopes with Two Geological Structures.
+app_description = """Surrogate Model for Prediction of Probability of Instability in Slopes with Two Geological Structures.
 by: Cristian Castro Álvarez (Geomechanics Engineer at Itasca Chile SpA)"""
-app_title = "Prediction of Probability of Failure"
+app_title = "Prediction of Probability of Instalibity"
 app_image = "https://i.ibb.co/qjP9GR6/Captura.jpg"
 metas = [
     {"name": "viewport", "content": "width=device-width, initial-scale=1.2, maximum-scale=1.5, minimum-scale=0.5"},

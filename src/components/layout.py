@@ -7,7 +7,7 @@ def create_layout(app: Dash) -> html.Div:
     return html.Div(
         className='app-div',
         children=[
-            html.H1(children="Prediction of Probability of Failure",
+            html.H1(children="Prediction of Probability of Instalibity",
                     style={'textAlign': 'center',
                            'color': 'black',
                            'font-weight': 'bold'}),
@@ -25,7 +25,7 @@ def create_layout(app: Dash) -> html.Div:
             html.Img(src='assets/images/Pic.png',
                      style={'height':'40%', 'width':'40%', 'margin': '20px'}),
             html.Div(children=[
-                html.H6(children="Please fill each box with the required parameter and then press 'Calculate PoF'",
+                html.H6(children="Please fill each box with the required parameter and then press 'Calculate PoI'",
                         style={'marginTop': 25})]),
             html.Div(children=[
                 html.H6(children="Each variable has a given [min_value, max_value] range.",

@@ -203,7 +203,7 @@ def render(app: Dash) -> html.Div:
                 style={'margin-bottom': 10}),
             html.Div(children=[
                 html.Button(id='calculate-button',
-                            children='Calculate PoF',
+                            children='Calculate PoI',
                             n_clicks=0,
                             style={'margin': '30px'})
             ])
