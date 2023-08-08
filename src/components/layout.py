@@ -34,7 +34,7 @@ def create_layout(app: Dash) -> html.Div:
                      children=[
                          input_variables.render(app=app)
                      ]),
-            html.H2(children="Probability of Failure is:"),
+            html.H2(children="Probability of Instability is:"),
             html.H2(id='pof', children='%'),
             html.H6(children="This model was trained to recognize the following failure mechanisms:",
                     style={'marginBottom': 20, 'marginTop': 50}),
